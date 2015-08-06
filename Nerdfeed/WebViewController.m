@@ -30,6 +30,19 @@
         [(UIWebView *)self.view loadRequest:req];
     }
 }
-	
+
+-(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc{
+
+    barButtonItem.title = @"Courses";
+    
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+-(void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem{
+
+    if (barButtonItem == self.navigationItem.leftBarButtonItem) {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+}
 
 @end

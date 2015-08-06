@@ -26,10 +26,24 @@
     
     UINavigationController *masterNav = [[UINavigationController alloc] initWithRootViewController:cvc];
     
-    self.window.rootViewController = masterNav;
-    
     WebViewController *wvc = [[WebViewController alloc] init];
     cvc.webViewController = wvc;
+    
+    //check to make sure we are running on the ipad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        
+        UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:wvc];
+        
+        UISplitViewController *svc = [[UISplitViewController alloc] init];
+        
+        svc.delegate = wvc;
+        svc.viewControllers = @[masterNav, detailNav];
+        
+        self.window.rootViewController = svc;
+    }else{
+        
+        self.window.rootViewController = masterNav;
+    }
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

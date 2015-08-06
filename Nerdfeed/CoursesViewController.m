@@ -90,7 +90,11 @@
     
     self.webViewController.title = course[@"title"];
     self.webViewController.URL = URL;
-    [self.navigationController pushViewController:self.webViewController animated:YES];
+    //[self.navigationController pushViewController:self.webViewController animated:YES];
+    
+    if (!self.splitViewController) {
+        [self.navigationController pushViewController:self.webViewController animated:YES];
+    }
 }
 
 #pragma mark - NSURLSession data delegate
